@@ -1,49 +1,19 @@
 import Test from '../components/Test'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import useSWR from 'swr';
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 const Quiz = () => {
-    const initState = {
-        currentStep: 1,
-        tests : [
-        {
-            step : 1,
-            active: true,
-            options :
-                {
-                    question : 'how old are you ?',
-                    answer: [
-                        {
-                            text : '12'
-                        },
-                        {
-                            text : '23'
-                        },
-                        {
-                            text : '56'
-                        }
-                    ]
-                }
-        },
-        {
-            step : 2,
-            active: false,
-            options :
-                {
-                    question : 'what your name ?',
-                    answer: [
-                        {
-                            text : 'Matt'
-                        },
-                        {
-                            text : 'Lisa'
-                        },
-                        {
-                            text : 'Josh'
-                        }
-                    ]
-                }
-        }
-    ]};
-    const [quiz, setQuiz] = useState(initState);
+    const [quiz, setQuiz] = useState(null);
+    const fetchData = async () => {
+        const { data, error, isLoading  } = useSWR('/api/quiz', fetcher)
+        console.log(data);
+        setQuiz(data);
+    };
+    useEffect(() => {
+        
+      fetchData();
+
+      }, []);
     const nextQuiz = () =>
     {
         const step = quiz.currentStep + 1
@@ -66,22 +36,25 @@ const Quiz = () => {
     {
         alert('submited');
     }
-
-    if(quiz.currentStep > quiz.tests.length) {
-        return (<button style={{padding: 10}} onClick={submitAnswer}>Submit</button>)
-    } else {
-        return (<div>{
-            quiz.tests.map(item => {
-                if(quiz.currentStep === item.step)
-                {
-                    return (
-                        <Test test={item.options} onNext={nextQuiz} onPrevious={previousQuiz}/>
-                    );
-                }
-            })
-        }</div>);
-        
+    if(quiz !== null)
+    {
+        if(quiz.currentStep > quiz.tests.length) {
+            return (<button style={{padding: 10}} onClick={submitAnswer}>Submit</button>)
+        } else {
+            return (<div>{
+                quiz.tests.map(item => {
+                    if(quiz.currentStep === item.step)
+                    {
+                        return (
+                            <Test test={item.options} onNext={nextQuiz} onPrevious={previousQuiz}/>
+                        );
+                    }
+                })
+            }</div>);
+            
+        }
     }
+    
    
   };
   export default Quiz;
