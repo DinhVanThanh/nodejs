@@ -1,12 +1,11 @@
+import Navbar from "../components/navbar.tsx";
+import Category from "../components/category.tsx";
 import Image from "next/image";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
-
 export default function Home() {
   return (
-    <div className="flex justify-center">
-      <div>start cooking</div>
+    <div className="h-screen">
+      <Navbar />
+      <Category />
     </div>
   );
 }
