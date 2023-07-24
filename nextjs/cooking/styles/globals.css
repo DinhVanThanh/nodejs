@@ -16,6 +16,10 @@
   }
 }
 
+svg{
+  display: inline-block;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
 }
