@@ -2,15 +2,6 @@ import Image from "next/image";
 export default function Category() {
   return (
     <div className="pt-20 pb-20">
-      <div className="flex justify-between">
-        <span className="category">Categories</span>
-        <span
-          className="text flex justify-center items-center"
-          style={{ fontWeight: 600 }}
-        >
-          View All Categories
-        </span>
-      </div>
       <div className="flex justify-evenly">
         <div>
           <Image
