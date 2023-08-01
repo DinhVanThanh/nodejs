@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
-const CookSchema = new mongoose.Schema({
+const CategorySchema = new mongoose.Schema({
   name: {
     type: String,
   },
-  description: {
+  image: {
     type: String,
   },
 });
 
-const Cook = mongoose.model("Cook", CookSchema);
+const Cook = mongoose.model("Category", CategorySchema);
 
 module.exports = Cook;

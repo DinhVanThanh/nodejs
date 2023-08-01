@@ -4,8 +4,8 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
-var indexRouter = require("./routes/index");
-var cookRouter = require("./routes/cook");
+var categoryRouter = require("./routes/category");
+var recipeRouter = require("./routes/recipe");
 var cors = require("cors");
 var app = express();
 const port = 4000;
@@ -18,8 +18,8 @@ app.use(
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   })
 );
-app.use("/", indexRouter);
-app.use("/cook", cookRouter);
+app.use("/category", categoryRouter);
+app.use("/recipe", recipeRouter);
 
 main().catch((err) => console.log(err));
 

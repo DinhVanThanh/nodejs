@@ -7,7 +7,7 @@ export default function Recipe() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const result = await fetch("http://localhost:4000/cook/list/all", {
+        const result = await fetch("http://localhost:4000/recipe/list/all", {
           method: "GET",
           mode: "cors",
         });
