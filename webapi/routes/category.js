@@ -25,9 +25,9 @@ router.put("/update/:name", async function (req, res, next) {
   const filter = { name: req.params.name };
   try {
     console.log(req.body);
-    categoryModel.findOneAndUpdate(filter, { image: req.body.image });
-    const category = await categoryModel.findOne(filter);
-    console.log(category);
+    const category = await categoryModel.findOneAndUpdate(filter, {
+      image: req.body.image,
+    });
     res.send(category);
   } catch (error) {
     res.status(500).send(error);
