@@ -21,17 +21,17 @@ router.post("/create", async function (req, res, next) {
   }
 });
 
-router.put("/update/:name", async function (req, res, next) {
-  const filter = { name: req.params.name };
+router.put("/update/:id", async function (req, res, next) {
+  const filter = { _id: req.params.id };
   try {
-    console.log(req.body);
-    const category = await categoryModel.findOneAndUpdate(filter, {
-      image: req.body.image,
+    const category = await categoryModel.findOneAndUpdate(filter, req.body, {
+      runValidators: true,
     });
     res.send(category);
   } catch (error) {
     res.status(500).send(error);
   }
 });
+
 
 module.exports = router;

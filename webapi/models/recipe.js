@@ -3,13 +3,22 @@ const { Schema } = mongoose;
 const RecipeSchema = new mongoose.Schema({
   name: {
     type: String,
+    required: true,
   },
-  time: {
+  prepTime: {
     type: Number,
   },
-  type_id: {
+  cookTime: {
+    type: Number,
+  },
+  category: {
     type: Schema.Types.ObjectId,
     ref: "Category",
+  },
+  direction: [String],
+  ingredient: [Schema.Types.ObjectId],
+  videoUrl: {
+    type: String,
   },
 });
 
